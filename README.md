@@ -1,6 +1,6 @@
 # homebridge-iam-voc
 
-A [HomeBridge Plugin](https://github.com/nfarina) making the [Applied Sensors iAM USB](http://ams.com/eng/Products/Environmental-Sensors/Air-Quality-Sensors/iAM) air quality sensor availible in homekit [HomeKit](https://developer.apple.com/homekit/).
+A [HomeBridge Plugin](https://github.com/nfarina) making the [Applied Sensors iAM USB](http://ams.com/eng/Products/Environmental-Sensors/Air-Quality-Sensors/iAM) air quality sensor availible in [HomeKit](https://developer.apple.com/homekit/).
 
 ## Installation
 
