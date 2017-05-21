@@ -1,0 +1,39 @@
+{
+    "name": "homebridge-iam-voc",
+    "version": "0.0.1",
+    "description": "A HomeBridge plugin for Applied Sensors iAM USB indoor air quality moitor.",
+    "main": "main.js",
+    "scripts": {
+        "test": "echo \"Error: no test present\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/toto/homebridge-iam-voc.git"
+    },
+    "files": [
+        "main.js",
+        "README.md"
+    ],
+    "keywords": [
+        "voc",
+        "voc-monitor",
+        "Applied Sensors iAM USB",
+        "REHAU USB air quality",				
+        "Voltcraft USB air quality",				
+				"air quality",
+        "homebridge-plugin"
+    ],
+    "engines": {
+        "node": ">=0.12.0",
+        "homebridge": ">=0.2.0"
+    },
+    "author": "toto",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/toto/homebridge-iam-voc/issues"
+    },
+    "homepage": "https://github.com/toto/homebridge-iam-voc",
+    "dependencies": {
+        "iam-voc-monitor": "^1.0.0"
+    }
+}
