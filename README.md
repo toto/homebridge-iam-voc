@@ -16,7 +16,7 @@ To allow homebridge to run without beeing root or using sudo a udev Rule needs t
 Create `/etc/udev/rules.d/23-homebridge.rules` and put in the following line, where you replace `homebridge` with the group of the user running homebridge on your system (e.g. `pi` on a raspian):
 
 ```
-SUBSYSTEM=="usb", ATTR{idVendor}=="04d9", ATTR{idProduct}=="a052", GROUP="homebridge", MODE="0664"
+SUBSYSTEM=="usb", ATTR{idVendor}=="03eb", ATTR{idProduct}=="2013", GROUP="homebridge", MODE="0664"
 ```
 
 Afterwards reload the rules with `udevadm control --reload` and replug the USB plug of your AirControl Mini.
