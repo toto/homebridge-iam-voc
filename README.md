@@ -19,7 +19,7 @@ Create `/etc/udev/rules.d/23-homebridge.rules` and put in the following line, wh
 SUBSYSTEM=="usb", ATTR{idVendor}=="03eb", ATTR{idProduct}=="2013", GROUP="homebridge", MODE="0664"
 ```
 
-Afterwards reload the rules with `udevadm control --reload` and replug the USB plug of your AirControl Mini.
+Afterwards reload the rules with `udevadm control --reload` and replug the USB plug of your USB device.
 
 ## Sample Config (Excerpt)
 
