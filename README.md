@@ -8,7 +8,7 @@ For use on an Ubuntu/Debian style Linux:
 
 ```
 sudo apt-get install build-essential libudev-dev
-sudo npm install -g --unsafe-perm homebridge-aircontrol-mini
+sudo npm install -g --unsafe-perm homebridge-iam-voc
 ```
 
 To allow homebridge to run without beeing root or using sudo a udev Rule needs to be added. 

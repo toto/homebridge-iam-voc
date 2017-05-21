@@ -18,7 +18,7 @@ function iAMVOCAccessory(log, config) {
 
   this.log = log;
   this.name = config["name"];
-
+	
 
   // Set up VOC
   this.vocMonitor = new iAMVOCMonitor();
@@ -26,31 +26,59 @@ function iAMVOCAccessory(log, config) {
 	
 	// Set up information service
   this.informationService = new Service.AccessoryInformation();
+  this.informationService.setCharacteristic(
+    Characteristic.Manufacturer,
+    "Applied Sensors"
+  );
+  this.informationService.setCharacteristic(
+    Characteristic.Model,
+		"iAM USB Air Quality Sensor"
+  );
+	
+	// Start transfer
   this.vocMonitor.on("connected", device => {
-	  this.informationService.setCharacteristic(
-	    Characteristic.Manufacturer,
-	    device.iManufacturer
-	  );
-	  this.informationService.setCharacteristic(
-	    Characteristic.Model,
-	    iProduct
-	  );
-	  this.informationService.setCharacteristic(
-	    Characteristic.SerialNumber,
-	    device.iSerialNumber
-	  );
-		
+	  
 		this.vocMonitor.startTransfer();
+		this.airQualityService.setCharacteristic(
+			Characteristic.StatusActive,
+			true
+		);
   });
 
-  this.vocMonitor.on("rawData", voc => {
-    this.log(that.name, "VOC (ppm):", voc);
-		
+  this.vocMonitor.on("rawData", voc => {		
 		let normalizedVoc = (voc - 450.0) / 1550.0;
+		let quality = Characteristic.AirQuality.UNKNOWN;
 		
+		if (normalizedVoc <= 0.2) {
+			quality = Characteristic.AirQuality.EXCELLENT;
+		}
+		else if (normalizedVoc <= 0.4) {
+			quality = Characteristic.AirQuality.GOOD;
+		} 
+		else if (normalizedVoc <= 0.6) {
+			quality = Characteristic.AirQuality.FAIR;
+		}
+		else if (normalizedVoc <= 0.8) {
+			quality = Characteristic.AirQuality.INFERIOR;
+		}		
+		else {
+			quality = Characteristic.AirQuality.POOR;
+		}
+		
+		if (this.quality != quality) {
+			this.quality = quality;
+			this.airQualityService.setCharacteristic(
+				Characteristic.AirQuality,
+				quality
+			);
+			
+			this.log("VOC air quality changed. Now at", voc, "ppm. Normalized:", normalizedVoc);
+		}
+		
+		let vocDensity = normalizedVoc * 1000.0;
 		this.airQualityService.setCharacteristic(
-			Characteristic.AirQuality,
-			Characteristic.AirQuality.GOOD
+			Characteristic.VOCDensity,
+			vocDensity
 		);
   });
 
